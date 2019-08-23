@@ -20,6 +20,11 @@ import com.scotia.codingchallenge.utils.MessageType
 import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.android.synthetic.main.activity_main.*
 
+/*
+DESCRIPTION : The activity is responsible for displaying data, error messages on View.
+The communication part is handled by presenter.
+ */
+
 class GitReposActivity : AppCompatActivity(), GitReposContract.View {
     lateinit var presenter: GitReposPresenter //
     var userId = ""
