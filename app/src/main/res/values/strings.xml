@@ -11,5 +11,6 @@
     <string name="error_noreposfound">No repos found for this user</string>
     <string name="error_internet">Internet connection required for search. Please try again</string>
     <string name="searching">Searching...</string>
+    <string name="error_apilimit">API rate limit exceeded</string>
 
 </resources>

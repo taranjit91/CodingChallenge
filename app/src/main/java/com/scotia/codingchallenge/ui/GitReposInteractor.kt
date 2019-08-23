@@ -33,11 +33,18 @@ class GitReposInteractor(val context: Context) : GitReposContract.Interactor {
                             listener.userExist(user)
                         }
                     } else {
-                        if (response.code() == 404)
-                            listener.userNotFound(MessageType.NoUserFound)
+                        when (response.code()) {
+                            404 -> {
+                                listener.userNotFound(MessageType.NoUserFound)
+                            }
+                            403 -> {
+                                listener.errorGettingInfo(MessageType.ApiLimitExceed)
+                            }
+                            else ->
+                                listener.userNotFound(MessageType.ErrorGettingData)
+                        }
                     }
                 }
-
 
             }
 

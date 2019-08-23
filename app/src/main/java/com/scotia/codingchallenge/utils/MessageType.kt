@@ -5,6 +5,7 @@ enum class MessageType {
     UserIdFieldEmpty,
     NoUserFound,
     ErrorGettingData,
-    NoReposFound
+    NoReposFound,
+    ApiLimitExceed
 
 }

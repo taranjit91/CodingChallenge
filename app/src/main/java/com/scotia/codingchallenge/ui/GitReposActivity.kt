@@ -72,6 +72,10 @@ class GitReposActivity : AppCompatActivity(), GitReposContract.View {
                 message = resources.getString(R.string.error_noreposfound)
                 resetSearchButton()
             }
+            MessageType.ApiLimitExceed -> {
+                message = resources.getString(R.string.error_apilimit)
+                resetSearchButton()
+            }
 
 
         }
