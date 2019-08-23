@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CodingChallenge</string>
+    <string name="searchLabel">Enter a github user id </string>
+    <string name="info_lastUpdatedLabel">Last Updated at</string>
+    <string name="info_starsLabel">Stars</string>
+    <string name="info_forksLabel">Forks</string>
+    <string name="btn_search">Search</string>
 </resources>

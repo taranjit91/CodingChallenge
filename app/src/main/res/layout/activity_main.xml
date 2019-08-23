@@ -1,19 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
-
-    <TextView
-            android:layout_width="wrap_content"
+        android:layout_margin="@dimen/margin_large"
+       >
+<TextView android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textColor="@color/colorAccent"
+          android:text="@string/searchLabel"
+          android:id="@+id/searchText"
+/>
+    <EditText
+            android:layout_below="@+id/searchText"
+            android:id="@+id/enterIdEditText"
+            android:inputType="text"
+            android:padding="16dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_toStartOf="@+id/search_btn"
+    />
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_search"
+            android:id="@+id/search_btn"
+            android:layout_below="@+id/searchText"
+            android:layout_alignParentEnd="true"
+    />
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/userInfoLayout"
+                    android:layout_below="@+id/enterIdEditText"
+                    android:layout_margin="@dimen/margin_medium"
+    >
+        <ImageView android:layout_width="80dp"
+                   android:layout_height="80dp"
+                   android:layout_centerHorizontal="true"
+                   android:id="@+id/userImage"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/userNameText"
+                  android:textSize="14sp"
+                  android:layout_centerHorizontal="true"
+                  android:layout_below="@+id/userImage"
+        />
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+            android:layout_margin="12dp"
+            android:id="@+id/reposRecyclerView"
+            android:layout_below="@+id/userInfoLayout"
+            android:layoutAnimation="@anim/layout_animationfrombottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:id="@+id/repoInformationLayout"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="gone"
+                    android:background="@android:color/white"
+                    android:layout_margin="12dp"
+    >
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/info_lastUpdatedLabel"
+                  android:id="@+id/lastUpdatedLabel"
+                  android:layout_toStartOf="@+id/lastUpdatedText"
+                  android:layout_margin="8dp"
+        />
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/info_lastUpdatedLabel"
+                  android:layout_alignParentEnd="true"
+                  android:id="@+id/lastUpdatedText"
+                  android:layout_margin="8dp"
+        />
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/info_starsLabel"
+                  android:id="@+id/starsLabel"
+                  android:layout_below="@+id/lastUpdatedLabel"
+                  android:layout_margin="4dp"
+        />
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/info_starsLabel"
+                  android:id="@+id/starsText"
+                  android:layout_margin="8dp"
+                  android:layout_alignParentEnd="true"
+                  android:layout_below="@+id/lastUpdatedLabel"
+        />
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/info_forksLabel"
+                  android:id="@+id/forksLabel"
+                  android:layout_margin="8dp"
+                  android:layout_below="@+id/starsLabel"
+        />
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/info_starsLabel"
+                  android:id="@+id/forksText"
+                  android:layout_alignParentEnd="true"
+                  android:layout_margin="8dp"
+                  android:layout_below="@+id/starsLabel"
+        />
+    </RelativeLayout>
+
+</RelativeLayout>
