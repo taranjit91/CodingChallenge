@@ -50,7 +50,7 @@ class GitReposActivity : AppCompatActivity(), GitReposContract.View {
         var message = ""
         when (messageType) {
             MessageType.InternetNotAvailable -> {
-                message = resources.getString(R.string.error_getting_data)
+                message = resources.getString(R.string.error_internet)
             }
             MessageType.NoUserFound -> {
                 message = resources.getString(R.string.user_not_found)

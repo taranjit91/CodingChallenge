@@ -9,6 +9,7 @@
     <string name="error_getting_data">Error getting data. Please try again</string>
     <string name="error_userid_empty">Userid field can\'t be empty. Please try again</string>
     <string name="error_noreposfound">No repos found for this user</string>
+    <string name="error_internet">Internet connection required for search. Please try again</string>
     <string name="searching">Searching...</string>
 
 </resources>
