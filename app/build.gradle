@@ -4,6 +4,9 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+// enable kapt
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -30,4 +33,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //network request
+    implementation 'com.squareup.retrofit2:retrofit:2.0.0'
+
+    // parser
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.0'
+
+    //for coroutines
+    implementation "org.jetbrains.anko:anko-design:0.10.5"
+    //for images
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
 }
