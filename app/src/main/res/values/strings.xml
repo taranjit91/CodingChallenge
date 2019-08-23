@@ -5,4 +5,9 @@
     <string name="info_starsLabel">Stars</string>
     <string name="info_forksLabel">Forks</string>
     <string name="btn_search">Search</string>
+    <string name="user_not_found">User not found. Please make sure userId is correct</string>
+    <string name="error_getting_data">Error getting data. Please try again</string>
+    <string name="error_userid_empty">Userid field can\'t be empty. Please try again</string>
+    <string name="error_noreposfound">No repos found for this user</string>
+
 </resources>
