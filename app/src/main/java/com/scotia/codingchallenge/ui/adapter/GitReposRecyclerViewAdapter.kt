@@ -16,6 +16,7 @@ class GitReposRecyclerViewAdapter(val context: Context, val list: List<Repos>, g
     RecyclerView.Adapter<GitReposRecyclerViewAdapter.ReposViewHolder>() {
     var activity = gitActivity
     lateinit var lastClickedRepo: Repos
+    var infoVisible = false
     override fun getItemCount(): Int {
         return list.size
     }
@@ -53,11 +54,14 @@ class GitReposRecyclerViewAdapter(val context: Context, val list: List<Repos>, g
             tvDesc.text = repo.description
             cardViewLayout.setOnClickListener {
                 if (::lastClickedRepo.isInitialized) {
-                    if (lastClickedRepo == repo) {
+                    if (lastClickedRepo == repo && infoVisible) {
+                        infoVisible = false
                         activity.hideRepoInformation()
                     } else {
+                        infoVisible = true
                         activity.showRepoInformation(repo)
                     }
+                    lastClickedRepo = repo
                 } else {
                     lastClickedRepo = repo
                     activity.showRepoInformation(repo)
