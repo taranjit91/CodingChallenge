@@ -32,6 +32,9 @@ class GitReposInteractor(val context: Context) : GitReposContract.Interactor {
                         else {
                             listener.userExist(user)
                         }
+                    } else {
+                        if (response.code() == 404)
+                            listener.userNotFound(MessageType.NoUserFound)
                     }
                 }
 

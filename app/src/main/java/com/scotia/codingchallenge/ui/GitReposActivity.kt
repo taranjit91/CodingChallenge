@@ -13,6 +13,7 @@ import com.scotia.codingchallenge.R
 import com.scotia.codingchallenge.model.Repos
 import com.scotia.codingchallenge.model.User
 import com.scotia.codingchallenge.ui.adapter.GitReposRecyclerViewAdapter
+import com.scotia.codingchallenge.utils.CheckInternetConnectivity
 import com.scotia.codingchallenge.utils.DateUtils
 import com.scotia.codingchallenge.utils.GlideApp
 import com.scotia.codingchallenge.utils.MessageType
@@ -22,11 +23,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 class GitReposActivity : AppCompatActivity(), GitReposContract.View {
     lateinit var presenter: GitReposPresenter //
     var userId = ""
+
     override fun updateUserInfo(user: User) {
         //user exist , send request for fetching repos
-        if (userId.isNotBlank())
+        if (userId.isNotBlank()) {
+            if (CheckInternetConnectivity.isOnline(this))//send request only if internet is available
             presenter.fetchRepositoriesForUserId(userId)
-
+            else
+                showMessage(MessageType.InternetNotAvailable)
+        }
         //update view
         GlideApp.with(userImage.context)
             .load(user.avatarUrl)
@@ -36,6 +41,7 @@ class GitReposActivity : AppCompatActivity(), GitReposContract.View {
     }
 
     override fun updateViewForUserNotFound() {
+        resetSearchButton()
         showMessage(MessageType.NoUserFound)
     }
 
@@ -48,15 +54,18 @@ class GitReposActivity : AppCompatActivity(), GitReposContract.View {
             }
             MessageType.NoUserFound -> {
                 message = resources.getString(R.string.user_not_found)
+                resetView()
             }
             MessageType.UserIdFieldEmpty -> {
                 message = resources.getString(R.string.error_userid_empty)
             }
             MessageType.ErrorGettingData -> {
                 message = resources.getString(R.string.error_getting_data)
+                resetSearchButton()
             }
             MessageType.NoReposFound -> {
                 message = resources.getString(R.string.error_noreposfound)
+                resetSearchButton()
             }
 
 
@@ -73,6 +82,8 @@ class GitReposActivity : AppCompatActivity(), GitReposContract.View {
         val animation = AnimationUtils.loadLayoutAnimation(this, resId)
         reposRecyclerView.layoutAnimation = (animation)
         reposRecyclerView.adapter = adapter
+
+        resetSearchButton()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,7 +101,14 @@ class GitReposActivity : AppCompatActivity(), GitReposContract.View {
 
             if (userId.isNotBlank()) {
                 hideKeyboardFrom(this, enterIdEditText)
-                presenter.fetchUserInfo(userId)
+                if (CheckInternetConnectivity.isOnline(this)) {
+                    updateViewForOngoingRequest()
+                    presenter.fetchUserInfo(userId)
+                } else {
+
+                    showMessage(MessageType.InternetNotAvailable)
+                }
+
             } else {
 
                 showMessage(MessageType.UserIdFieldEmpty)
@@ -126,4 +144,24 @@ class GitReposActivity : AppCompatActivity(), GitReposContract.View {
             repoInformationLayout.visibility = View.GONE
     }
 
+    private fun updateViewForOngoingRequest() {
+        search_btn.text = resources.getString(R.string.searching)
+        search_btn.isEnabled = false
+        search_btn.isClickable = false
+    }
+
+    private fun resetSearchButton() {
+        search_btn.isEnabled = true
+        search_btn.isClickable = true
+        search_btn.text = resources.getString(R.string.btn_search)
+
+    }
+
+    private fun resetView() {
+        resetSearchButton()
+        reposRecyclerView.adapter = null
+        userImage.setImageDrawable(null)
+        userNameText.text = ""
+
+    }
 }

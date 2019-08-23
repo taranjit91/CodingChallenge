@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/search_btn"
     />
-    <Button android:layout_width="wrap_content"
+    <Button android:layout_width="@dimen/btn_width"
             android:layout_height="wrap_content"
             android:text="@string/btn_search"
             android:id="@+id/search_btn"
