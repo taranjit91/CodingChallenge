@@ -1,7 +1,8 @@
-package com.scotia.codingchallenge
+package com.scotia.codingchallenge.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.scotia.codingchallenge.R
 
 class MainActivity : AppCompatActivity() {
 
