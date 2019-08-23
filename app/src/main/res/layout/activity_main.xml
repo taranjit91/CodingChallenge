@@ -41,6 +41,7 @@
                   android:layout_height="wrap_content"
                   android:id="@+id/userNameText"
                   android:textSize="14sp"
+                  android:textStyle="bold"
                   android:layout_centerHorizontal="true"
                   android:layout_below="@+id/userImage"
         />

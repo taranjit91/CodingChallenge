@@ -16,6 +16,7 @@ import com.scotia.codingchallenge.ui.adapter.GitReposRecyclerViewAdapter
 import com.scotia.codingchallenge.utils.DateUtils
 import com.scotia.codingchallenge.utils.GlideApp
 import com.scotia.codingchallenge.utils.MessageType
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class GitReposActivity : AppCompatActivity(), GitReposContract.View {
@@ -39,6 +40,7 @@ class GitReposActivity : AppCompatActivity(), GitReposContract.View {
     }
 
     override fun showMessage(messageType: MessageType) {
+        hideKeyboardFrom(this, enterIdEditText)
         var message = ""
         when (messageType) {
             MessageType.InternetNotAvailable -> {
@@ -60,7 +62,7 @@ class GitReposActivity : AppCompatActivity(), GitReposContract.View {
 
         }
         if (message.isNotBlank())
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+            FancyToast.makeText(this, message, Toast.LENGTH_LONG, FancyToast.INFO, true).show()
     }
 
     override fun updateRecyclerViewForRepositories(repos: List<Repos>) {
